@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lưu Bút </title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Lưu Bút</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700&family=Poppins:wght=300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
@@ -116,7 +116,8 @@ textarea{height:120px}
 .petal{
 position:fixed;top:-50px;z-index:5;
 animation:fall linear infinite;
-}@keyframes fall{
+}
+@keyframes fall{
 to{transform:translate(350px,110vh) rotate(540deg)}
 }
 #successBox{
@@ -164,7 +165,7 @@ z-index:99999;
 </div>
 
 <div class="page" id="p1">
-<h1>Lưu Bút </h1>
+<h1>Lưu Bút</h1>
 <p>Gửi Quỳnh Nga Một Chút Thanh Xuân 🌸</p>
 <p>2023 - 2026</p>
 <button class="btn" onclick="lat('p1')">Mở Cuốn Sổ</button>
@@ -174,6 +175,7 @@ z-index:99999;
 </div>
 
 <script>
+// Thay SCRIPT_URL của bạn vào đây
 const SCRIPT_URL="https://script.google.com/macros/s/AKfycbwtXCRwmtwl9HUHUGrE_vfxvqMVtJkwqnLguBmCz92Q6XeNlcrbdlkUPj5kkEae2b-k/exec";
 
 function lat(id){document.getElementById(id).classList.add('flip');}
@@ -185,7 +187,6 @@ if(localStorage.getItem("daGui")){
     return;
 }
 
-// Kiểm tra xem người dùng có bỏ trống không để tránh gửi data rỗng
 if(!ten.value.trim() || !loinhan.value.trim()){
     alert("Bạn điền giúp Quỳnh Nga họ tên và lời nhắn nhé! 💕");
     return;
@@ -197,42 +198,39 @@ const trangP3 = document.getElementById("p3");
 // --- TRẠNG THÁI: ĐANG GỬI ---
 btnGui.disabled = true;
 btnGui.innerText = "⏳ Đang gửi lưu bút...";
-trangP3.classList.add("sending-glow"); // Kích hoạt hiệu ứng phát sáng cho trang
+trangP3.classList.add("sending-glow"); 
 
-const data={
-ten:ten.value,
-bietdanh:bietdanh.value,
-kyniem:kyniem.value,
-loinhan:loinhan.value
-};
+// Đóng gói dữ liệu dạng URLSearchParams để Google Script nhận diện tốt nhất
+const formData = new URLSearchParams();
+formData.append('ten', ten.value);
+formData.append('bietdanh', bietdanh.value);
+formData.append('kyniem', kyniem.value);
+formData.append('loinhan', loinhan.value);
 
 try {
-    // Lưu ý: Đoạn fetch gốc của bạn bị thiếu tham số truyền data, mình đã hoàn thiện cấu trúc fetch POST cơ bản đến Google Apps Script
     await fetch(SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', // Thường dùng với Google Script nếu không cấu hình CORS
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
     });
 
     // --- TRẠNG THÁI: GỬI THÀNH CÔNG ---
-    trangP3.classList.remove("sending-glow"); // Tắt hiệu ứng phát sáng đang gửi
+    trangP3.classList.remove("sending-glow"); 
     btnGui.innerText = "✅ Đã gửi thành công ❤️";
-    btnGui.classList.add("success-btn");document.getElementById("successBox").style.display = "block";
+    btnGui.classList.add("success-btn");
+    
+    document.getElementById("successBox").style.display = "block";
 
     setTimeout(function(){
         document.getElementById("successBox").style.display = "none";
-    },3000);
-
-    msg.innerText='💙 Đã gửi thành công!';
-    localStorage.setItem("daGui","true");
+    }, 3000);
+msg.innerText = '💙 Đã gửi thành công!';
+    localStorage.setItem("daGui", "true");
 
 } catch (error) {
-    // Trường hợp lỗi mạng
     console.error(error);
     alert("Có lỗi xảy ra khi gửi, bạn thử lại nhé!");
     
-    // Reset lại nút nếu lỗi để họ gửi lại
     btnGui.disabled = false;
     btnGui.innerText = "Gửi lưu bút ❤️";
     trangP3.classList.remove("sending-glow");
