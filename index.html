@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lưu Bút</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700&family=Poppins:wght=300;400;600&display=swap" rel="stylesheet">
+<title>Lưu Bút 12A1</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
@@ -33,22 +33,6 @@ transform-origin:left;
 transition:1.2s;
 box-shadow:0 0 25px rgba(255,255,255,.2),0 0 60px rgba(100,180,255,.5);
 }
-
-/* Hiệu ứng Glow nhấp nháy khi đang gửi dữ liệu */
-.page.sending-glow {
-animation: processingGlow 1.5s infinite alternate;
-border-color: rgba(126,200,255,0.8);
-}
-
-@keyframes processingGlow {
-0% {
-box-shadow: 0 0 25px rgba(255,255,255,.2), 0 0 40px rgba(100,180,255,.4);
-}
-100% {
-box-shadow: 0 0 35px rgba(126,200,255,.6), 0 0 80px rgba(100,180,255,.9);
-}
-}
-
 .flip{transform:rotateY(-180deg)}
 h1{
 font-family:'Playfair Display',serif;
@@ -58,58 +42,17 @@ text-shadow:0 0 10px #fff,0 0 30px #7ec8ff;
 }
 h2{text-align:center;margin-top:20px}
 p{text-align:center;margin:15px 0}
-
 .btn{
-display:block;
-margin:25px auto;
-padding:14px 28px;
-background:rgba(255,255,255,.18);
-border:2px solid rgba(255,255,255,.8);
-color:white;
-border-radius:15px;
-cursor:pointer;
-font-weight:600;
-box-shadow:
-0 0 10px rgba(255,255,255,.5),
-0 0 20px rgba(126,200,255,.5);
-transition:.3s;
+display:block;margin:25px auto;padding:14px 28px;
+background:rgba(255,255,255,.15);
+border:1px solid rgba(255,255,255,.4);
+color:white;border-radius:15px;cursor:pointer
 }
-
-.btn:hover:not(:disabled){
-transform:translateY(-2px);
-box-shadow:
-0 0 20px rgba(255,255,255,.8),
-0 0 40px rgba(126,200,255,.8);
-}
-
-/* Style riêng cho nút trạng thái đang gửi và đã gửi */
-.btn:disabled{
-opacity:.8;
-cursor:not-allowed;
-background:rgba(255,255,255,.05);
-border-color:rgba(255,255,255,.3);
-box-shadow: none;
-transform: none;
-}
-
-.btn.success-btn {
-background: rgba(46, 204, 113, 0.3);
-border-color: #2ecc71;
-box-shadow: 0 0 15px rgba(46, 204, 113, 0.6);
-color: #fff;
-}
-
 input,textarea{
 width:100%;margin:10px 0;padding:14px;
 border:none;border-radius:12px;
 background:rgba(255,255,255,.15);
 color:white;
-transition: .3s;
-}
-input:focus, textarea:focus {
-outline: none;
-background:rgba(255,255,255,.25);
-box-shadow: 0 0 15px rgba(126,200,255,.5);
 }
 input::placeholder,textarea::placeholder{color:#eee}
 textarea{height:120px}
@@ -120,26 +63,6 @@ animation:fall linear infinite;
 @keyframes fall{
 to{transform:translate(350px,110vh) rotate(540deg)}
 }
-#successBox{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-padding:20px 35px;
-border-radius:20px;
-background:rgba(20,120,255,.2);
-backdrop-filter:blur(15px);
-border:2px solid rgba(255,255,255,.8);
-color:white;
-font-size:22px;
-font-weight:bold;
-box-shadow:
-0 0 20px #6ec1ff,
-0 0 40px #6ec1ff,
-0 0 80px #6ec1ff;
-display:none;
-z-index:99999;
-} 
 </style>
 </head>
 <body>
@@ -149,12 +72,12 @@ z-index:99999;
 <div class="book">
 
 <div class="page" id="p3">
-<h2>💌 Gửi lưu bút cho Nga</h2>
+<h2>💌 Gửi lưu bút cho Quỳnh Nga </h2>
 <input id="ten" placeholder="Họ tên">
 <input id="bietdanh" placeholder="Biệt danh">
 <textarea id="kyniem" placeholder="Kỷ niệm đáng nhớ"></textarea>
 <textarea id="loinhan" placeholder="Điều muốn gửi tới Nga"></textarea>
-<button class="btn" id="btnGui" onclick="gui()">Gửi lưu bút ❤️</button>
+<button class="btn" onclick="gui()">Gửi lưu bút ❤️</button>
 <p id="msg"></p>
 </div>
 
@@ -166,7 +89,7 @@ z-index:99999;
 
 <div class="page" id="p1">
 <h1>Lưu Bút</h1>
-<p>Gửi Quỳnh Nga Một Chút Thanh Xuân 🌸</p>
+<p>Gửi Nga Một Chút Thanh Xuân 🌸</p>
 <p>2023 - 2026</p>
 <button class="btn" onclick="lat('p1')">Mở Cuốn Sổ</button>
 </div>
@@ -175,70 +98,25 @@ z-index:99999;
 </div>
 
 <script>
-// Thay SCRIPT_URL của bạn vào đây
-const SCRIPT_URL="https://script.google.com/macros/s/AKfycbwtXCRwmtwl9HUHUGrE_vfxvqMVtJkwqnLguBmCz92Q6XeNlcrbdlkUPj5kkEae2b-k/exec";
+const SCRIPT_URL="THAY_URL_APPS_SCRIPT_VAO_DAY";
 
 function lat(id){document.getElementById(id).classList.add('flip');}
 
 async function gui(){
-
-if(localStorage.getItem("daGui")){
-    alert("💌 Bạn đã gửi lưu bút rồi!");
-    return;
+const data={
+ten:ten.value,
+bietdanh:bietdanh.value,
+kyniem:kyniem.value,
+loinhan:loinhan.value
+};
+try{
+await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(data)});
+msg.innerText='💙 Đã gửi thành công!';
+}catch(e){
+msg.innerText='Hãy thay URL Apps Script.';
+}
 }
 
-if(!ten.value.trim() || !loinhan.value.trim()){
-    alert("Bạn điền giúp Quỳnh Nga họ tên và lời nhắn nhé! 💕");
-    return;
-}
-
-const btnGui = document.getElementById("btnGui");
-const trangP3 = document.getElementById("p3");
-
-// --- TRẠNG THÁI: ĐANG GỬI ---
-btnGui.disabled = true;
-btnGui.innerText = "⏳ Đang gửi lưu bút...";
-trangP3.classList.add("sending-glow"); 
-
-// Đóng gói dữ liệu dạng URLSearchParams để Google Script nhận diện tốt nhất
-const formData = new URLSearchParams();
-formData.append('ten', ten.value);
-formData.append('bietdanh', bietdanh.value);
-formData.append('kyniem', kyniem.value);
-formData.append('loinhan', loinhan.value);
-
-try {
-    await fetch(SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formData.toString()
-    });
-
-    // --- TRẠNG THÁI: GỬI THÀNH CÔNG ---
-    trangP3.classList.remove("sending-glow"); 
-    btnGui.innerText = "✅ Đã gửi thành công ❤️";
-    btnGui.classList.add("success-btn");
-    
-    document.getElementById("successBox").style.display = "block";
-
-    setTimeout(function(){
-        document.getElementById("successBox").style.display = "none";
-    }, 3000);
-msg.innerText = '💙 Đã gửi thành công!';
-    localStorage.setItem("daGui", "true");
-
-} catch (error) {
-    console.error(error);
-    alert("Có lỗi xảy ra khi gửi, bạn thử lại nhé!");
-    
-    btnGui.disabled = false;
-    btnGui.innerText = "Gửi lưu bút ❤️";
-    trangP3.classList.remove("sending-glow");
-}
-
-}
-
-// Tạo hiệu ứng cánh hoa rơi
 for(let i=0;i<40;i++){
 let p=document.createElement('div');
 p.className='petal';
@@ -249,9 +127,5 @@ p.style.animationDuration=(8+Math.random()*10)+'s';
 document.body.appendChild(p);
 }
 </script>
-
-<div id="successBox">
-    ✅ Lưu bút đã được gửi thành công!
-</div>
 </body>
 </html>
